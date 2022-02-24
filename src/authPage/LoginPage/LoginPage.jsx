@@ -1,5 +1,6 @@
 import React from "react";
+import AuthBox from "../../shared/components/AuthBox";
 
 export default function LoginPage() {
-  return <div>LoginPage</div>;
+  return <AuthBox>Login Page</AuthBox>;
 }
