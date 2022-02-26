@@ -25,7 +25,7 @@ export default function LoginPageFooter({ handleLogin, isFormValid }) {
       >
         <div>
           <CustomPrimaryButton
-            label="log in"
+            label="Log in"
             additionalStyles={{ marginTop: "30px" }}
             disabled={!isFormValid}
             onClick={handleLogin}
