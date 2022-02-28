@@ -6,14 +6,21 @@ const apiClient = axios.create({
     timeout: 1000,
 });
 
-apiClient.interceptors.request.use((config) => {
-    const userDetails = localStorage.getItem("user");
+apiClient.interceptors.request.use(
+    (config) => {
+        const userDetails = localStorage.getItem("user");
 
-    if (userDetails) {
-        const token = JSON.parse(userDetails).token;
-        config.headers.Authorization = `Bearer ${token}`;
+        if (userDetails) {
+            const token = JSON.parse(userDetails).token;
+            config.headers.Authorization = `Bearer ${token}`;
+        }
+
+        return config;
+    },
+    (error) => {
+        return Promise.reject(error);
     }
-});
+);
 
 // public routers
 
