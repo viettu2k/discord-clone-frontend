@@ -17,7 +17,7 @@ const validatePassword = (password) => {
     return password.length > 6 && password.length < 12;
 };
 
-const validateMail = (email) => {
+export const validateMail = (email) => {
     return String(email)
         .toLowerCase()
         .match(
