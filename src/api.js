@@ -1,14 +1,14 @@
-import axios from "axios";
-import { logout } from "./shared/utils/auth";
+import axios from 'axios';
+import { logout } from './shared/utils/auth';
 
 const apiClient = axios.create({
-    baseURL: "http://localhost:5002/api",
+    baseURL: process.env.REACT_APP_API_URL,
     timeout: 1000,
 });
 
 apiClient.interceptors.request.use(
     (config) => {
-        const userDetails = localStorage.getItem("user");
+        const userDetails = localStorage.getItem('user');
 
         if (userDetails) {
             const token = JSON.parse(userDetails).token;
@@ -26,7 +26,7 @@ apiClient.interceptors.request.use(
 
 export const login = async(data) => {
     try {
-        return await apiClient.post("/auth/login", data);
+        return await apiClient.post('/auth/login', data);
     } catch (exception) {
         return {
             error: true,
@@ -37,7 +37,7 @@ export const login = async(data) => {
 
 export const register = async(data) => {
     try {
-        return await apiClient.post("/auth/register", data);
+        return await apiClient.post('/auth/register', data);
     } catch (exception) {
         return {
             error: true,
