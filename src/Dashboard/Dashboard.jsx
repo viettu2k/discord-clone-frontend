@@ -17,12 +17,12 @@ const Wrapper = styled('div')({
 
 const Dashboard = ({ setUserDetails }) => {
   useEffect(() => {
-    const userDetails = localStorage.getItem('user');
+    const userDetails = JSON.parse(localStorage.getItem('user'));
     if (!userDetails) {
       logout();
     } else {
-      setUserDetails(JSON.parse(userDetails));
-      connectWithSocketServer();
+      setUserDetails(userDetails);
+      connectWithSocketServer(userDetails);
     }
   }, []);
 
