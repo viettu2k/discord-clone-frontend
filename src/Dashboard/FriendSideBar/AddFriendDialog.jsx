@@ -7,7 +7,7 @@ import { validateMail } from '../../shared/utils/validators';
 import InputWithLabel from '../../shared/components/InputWithLabel';
 import CustomPrimaryButton from '../../shared/components/CustomPrimaryButton';
 import { connect } from 'react-redux';
-import { getActions } from '../../store/actions/friends';
+import { getActions } from '../../store/actions/friendsActions';
 
 const AddFriendDialog = ({
   isDialogOpen,
