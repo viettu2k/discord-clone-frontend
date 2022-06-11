@@ -32,4 +32,8 @@ export const connectWithSocketServer = (userDetails) => {
         const { friends } = data;
         store.dispatch(setFriends(friends));
     });
+
+    socket.on('online-users', (data) => {
+        console.log('online users event came', data);
+    });
 };
