@@ -1,23 +1,17 @@
 import React from 'react';
 import { styled } from '@mui/system';
 import FriendsListItem from './FriendsListItem';
-
-const DUMMY_FRIEND = [
-  { id: 1, username: 'Mark', isOnline: true },
-  { id: 2, username: 'Dark', isOnline: false },
-  { id: 3, username: 'Bruh', isOnline: true },
-  { id: 4, username: 'Lmao', isOnline: false },
-];
+import { connect } from 'react-redux';
 
 const MainContainer = styled('div')({
   flexGrow: 1,
   width: '100%',
 });
 
-const FriendsList = () => {
+const FriendsList = ({ friends }) => {
   return (
     <MainContainer>
-      {DUMMY_FRIEND.map((friend) => (
+      {friends.map((friend) => (
         <FriendsListItem
           key={friend.id}
           username={friend.username}
@@ -28,4 +22,10 @@ const FriendsList = () => {
   );
 };
 
-export default FriendsList;
+const mapStoreStateToProps = ({ friends }) => {
+  return {
+    ...friends,
+  };
+};
+
+export default connect(mapStoreStateToProps)(FriendsList);
