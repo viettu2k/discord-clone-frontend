@@ -12,10 +12,10 @@ const MainContainer = styled('div')({
   overflow: 'auto',
 });
 
-const PendingInvitationsList = ({ pendingFriendInvitations }) => {
+const PendingInvitationsList = ({ pendingFriendsInvitations }) => {
   return (
     <MainContainer>
-      {pendingFriendInvitations.map((invitation) => (
+      {pendingFriendsInvitations.map((invitation) => (
         <PendingInvitationsListItem
           key={invitation._id}
           id={invitation._id}
@@ -28,7 +28,9 @@ const PendingInvitationsList = ({ pendingFriendInvitations }) => {
 };
 
 const mapStoreStateToProps = ({ friends }) => {
-  return { ...friends };
+  return {
+    ...friends,
+  };
 };
 
 export default connect(mapStoreStateToProps)(PendingInvitationsList);

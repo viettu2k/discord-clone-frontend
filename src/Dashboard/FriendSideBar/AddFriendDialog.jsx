@@ -1,8 +1,10 @@
-import { Dialog, DialogTitle, Typography } from '@mui/material';
-import { DialogActions } from '@mui/material';
-import { DialogContent } from '@mui/material';
-import { DialogContentText } from '@mui/material';
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import Dialog from '@mui/material/Dialog';
+import DialogTitle from '@mui/material/DialogTitle';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import Typography from '@mui/material/Typography';
 import { validateMail } from '../../shared/utils/validators';
 import InputWithLabel from '../../shared/components/InputWithLabel';
 import CustomPrimaryButton from '../../shared/components/CustomPrimaryButton';
@@ -15,10 +17,15 @@ const AddFriendDialog = ({
   sendFriendInvitation = () => {},
 }) => {
   const [mail, setMail] = useState('');
-  const [isFormValid, setIsFormValid] = useState(false);
+  const [isFormValid, setIsFormValid] = useState('');
 
   const handleSendInvitation = () => {
-    sendFriendInvitation({ mail });
+    sendFriendInvitation(
+      {
+        targetMailAddress: mail,
+      },
+      handleCloseDialog
+    );
   };
 
   const handleCloseDialog = () => {
@@ -28,7 +35,7 @@ const AddFriendDialog = ({
 
   useEffect(() => {
     setIsFormValid(validateMail(mail));
-  }, [mail, setMail]);
+  }, [mail, setIsFormValid]);
 
   return (
     <div>
@@ -56,8 +63,8 @@ const AddFriendDialog = ({
             disabled={!isFormValid}
             label="Send"
             additionalStyles={{
-              marginRight: '15px',
               marginLeft: '15px',
+              marginRight: '15px',
               marginBottom: '10px',
             }}
           />

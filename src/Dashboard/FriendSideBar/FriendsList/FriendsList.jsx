@@ -8,14 +8,24 @@ const MainContainer = styled('div')({
   width: '100%',
 });
 
-const FriendsList = ({ friends }) => {
+const checkOnlineUsers = (friends = [], onlineUsers = []) => {
+  friends.forEach((f) => {
+    const isUserOnline = onlineUsers.find((user) => user.userId === f.id);
+    f.isOnline = isUserOnline ? true : false;
+  });
+
+  return friends;
+};
+
+const FriendsList = ({ friends, onlineUsers }) => {
   return (
     <MainContainer>
-      {friends.map((friend) => (
+      {checkOnlineUsers(friends, onlineUsers).map((f) => (
         <FriendsListItem
-          key={friend.id}
-          username={friend.username}
-          isOnline={friend.isOnline}
+          username={f.username}
+          id={f.id}
+          key={f.id}
+          isOnline={f.isOnline}
         />
       ))}
     </MainContainer>

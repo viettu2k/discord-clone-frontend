@@ -17,12 +17,12 @@ apiClient.interceptors.request.use(
 
     return config;
   },
-  (error) => {
-    return Promise.reject(error);
+  (err) => {
+    return Promise.reject(err);
   }
 );
 
-// public routers
+// public routes
 
 export const login = async (data) => {
   try {
