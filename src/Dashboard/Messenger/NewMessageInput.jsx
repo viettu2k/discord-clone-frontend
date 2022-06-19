@@ -1,7 +1,7 @@
 import React from 'react';
 
 const NewMessageInput = () => {
-  return <div>NewMessageInput</div>;
+  return <div></div>;
 };
 
 export default NewMessageInput;
