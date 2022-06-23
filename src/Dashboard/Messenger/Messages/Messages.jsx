@@ -1,9 +1,9 @@
-import React, { useRef, useEffect } from 'react';
+import React from 'react';
 import { styled } from '@mui/system';
 import MessagesHeader from './MessagesHeader';
 import { connect } from 'react-redux';
-import DUMMY_MESSAGES from './DUMMY_MESSAGES';
 import Message from './Message';
+import DateSeparator from './DateSeparator';
 
 const MainContainer = styled('div')({
   height: 'calc(100% - 60px)',
@@ -41,21 +41,27 @@ const Messages = ({ chosenChatDetails, messages }) => {
               'dd/mm/yy'
             );
 
-        console.log(message.date);
-        console.log(convertDateToHumanReadable(message.date, 'dd/mm/yy'));
-
         return (
-          <Message
-            key={message._id}
-            content={message.content}
-            username={message.author.username}
-            sameAuthor={sameAuthor}
-            date={convertDateToHumanReadable(
-              new Date(message.date),
-              'dd/mm/yy'
+          <div key={message._id} style={{ width: '97%' }}>
+            {(!sameDay || index === 0) && (
+              <DateSeparator
+                date={convertDateToHumanReadable(
+                  new Date(message.date),
+                  'dd/mm/yyyy'
+                )}
+              />
             )}
-            sameDay={sameDay}
-          />
+            <Message
+              content={message.content}
+              username={message.author.username}
+              sameAuthor={sameAuthor}
+              date={convertDateToHumanReadable(
+                new Date(message.date),
+                'dd/mm/yy'
+              )}
+              sameDay={sameDay}
+            />
+          </div>
         );
       })}
     </MainContainer>
