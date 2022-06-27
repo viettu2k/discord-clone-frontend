@@ -1,5 +1,9 @@
 import React from 'react';
 import { styled } from '@mui/system';
+import MicButton from './MicButton';
+import ScreenShareButton from './ScreenShareButton';
+import CameraButton from './CameraButton';
+import CloseRoomButton from './CloseRoomButton';
 
 const MainContainer = styled('div')({
   height: '15%',
@@ -13,7 +17,14 @@ const MainContainer = styled('div')({
 });
 
 const RoomButtons = () => {
-  return <div></div>;
+  return (
+    <MainContainer>
+      <ScreenShareButton />
+      <MicButton />
+      <CloseRoomButton />
+      <CameraButton />
+    </MainContainer>
+  );
 };
 
 export default RoomButtons;
