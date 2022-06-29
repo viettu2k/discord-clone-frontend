@@ -1,4 +1,8 @@
-import { setOpenRoom, setRoomDetails } from '../store/actions/roomActions';
+import {
+    setOpenRoom,
+    setRoomDetails,
+    setActiveRooms,
+} from '../store/actions/roomActions';
 import store from '../store/store';
 import * as socketConnection from './socketConnection';
 
@@ -14,6 +18,16 @@ export const newRoomCreated = (data) => {
 
 export const updateActiveRooms = (data) => {
     const { activeRooms } = data;
-    console.log('new active rooms came from store');
-    console.log(activeRooms);
+    const friends = store.getState().friends.friends;
+    const rooms = [];
+
+    activeRooms.forEach((room) => {
+        friends.forEach((f) => {
+            if (f.id === room.creatorId) {
+                rooms.push({...room, creatorUsername: f.username });
+            }
+        });
+    });
+
+    store.dispatch(setActiveRooms(rooms));
 };
