@@ -38,9 +38,13 @@ export const updateActiveRooms = (data) => {
 };
 
 export const joinRoom = (roomId) => {
-  store.dispatch(setRoomDetails({ roomId }));
-  store.dispatch(setOpenRoom(false, true));
-  socketConnection.joinRoom({ roomId });
+  const successCallbackFunc = () => {
+    store.dispatch(setRoomDetails({ roomId }));
+    store.dispatch(setOpenRoom(false, true));
+    socketConnection.joinRoom({ roomId });
+  };
+
+  webRTCHandler.getLocalStreamPreview(false, successCallbackFunc);
 };
 
 export const leaveRoom = () => {
