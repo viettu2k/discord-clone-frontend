@@ -13,8 +13,8 @@ export const createNewRoom = () => {
     socketConnection.createNewRoom();
   };
 
-  const onlyAudio = store.getState().room.audioOnly;
-  webRTCHandler.getLocalStreamPreview(onlyAudio, successCallbackFunc);
+  const audioOnly = store.getState().room.audioOnly;
+  webRTCHandler.getLocalStreamPreview(audioOnly, successCallbackFunc);
 };
 
 export const newRoomCreated = (data) => {
@@ -45,8 +45,8 @@ export const joinRoom = (roomId) => {
     socketConnection.joinRoom({ roomId });
   };
 
-  const onlyAudio = store.getState().room.audioOnly;
-  webRTCHandler.getLocalStreamPreview(onlyAudio, successCallbackFunc);
+  const audioOnly = store.getState().room.audioOnly;
+  webRTCHandler.getLocalStreamPreview(audioOnly, successCallbackFunc);
 };
 
 export const leaveRoom = () => {
